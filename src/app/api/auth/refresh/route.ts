@@ -1,5 +1,5 @@
-// app/api/auth/refresh/route.ts
-import { auth, currentUser } from "@clerk/nextjs/server";
+// app/api/auth/refresh/route.ts - Updated version with proper clerkClient initialization
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
@@ -11,15 +11,18 @@ export async function GET(req: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    // Get current user from Clerk
-    const user = await currentUser();
+    // Initialize the Clerk client
+    const client = await clerkClient();
+    
+    // Get current user from Clerk using the client
+    const user = await client.users.getUser(userId);
     
     if (!user) {
       return new NextResponse("User not found", { status: 404 });
     }
     
     console.log("Refreshing session for user:", userId);
-    console.log("Current unsafeMetadata:", user.unsafeMetadata);
+    console.log("Current unsafeMetadata:", user.privateMetadata);
     
     // If user has no role metadata in Clerk but has one in the database,
     // update Clerk's metadata with the role from the database
@@ -27,13 +30,13 @@ export async function GET(req: Request) {
       where: { clerkId: userId }
     });
     
-    if (dbUser && dbUser.role && (!user.unsafeMetadata || !user.unsafeMetadata.role)) {
+    if (dbUser && dbUser.role && (!user.privateMetadata || !user.privateMetadata.role)) {
       console.log(`User has role in database: ${dbUser.role}, but not in Clerk metadata. Updating Clerk...`);
       
       try {
-        // Update Clerk metadata with role from database
-        await user.update({
-          unsafeMetadata: {
+        // Update Clerk metadata using properly initialized client
+        await client.users.updateUser(userId, {
+          privateMetadata: {
             role: dbUser.role,
           },
         });
@@ -52,7 +55,7 @@ export async function GET(req: Request) {
       // Determine where to redirect based on role
       if (redirectPath === '/dashboard') {
         // If redirect is to dashboard, route based on role
-        const role = dbUser?.role || user.unsafeMetadata?.role;
+        const role = dbUser?.role || user.privateMetadata?.role;
         
         if (role === 'CREATOR') {
           return NextResponse.redirect(new URL('/creator/dashboard', url.origin));
@@ -73,7 +76,7 @@ export async function GET(req: Request) {
       message: "Session refreshed",
       userData: {
         id: user.id,
-        unsafeMetadata: user.unsafeMetadata,
+        privateMetadata: user.privateMetadata,
         databaseRole: dbUser?.role || null
       }
     });

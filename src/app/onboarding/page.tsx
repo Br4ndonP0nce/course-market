@@ -1,13 +1,15 @@
-// app/onboarding/page.tsx
+// app/onboarding/page.tsx - Updated version
 "use client";
 
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import confetti from "canvas-confetti";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function OnboardingPage() {
   const { user, isLoaded } = useUser();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,28 +39,23 @@ export default function OnboardingPage() {
           // If role is only in database, update Clerk
           if (dbRole && !clerkRole) {
             console.log("Syncing role from database to Clerk");
-            try {
-              await user.update({
-                unsafeMetadata: {
-                  role: dbRole,
-                },
-              });
-
-              // Refresh session
-              await fetch("/api/auth/refresh");
-            } catch (error) {
-              console.error("Error updating user metadata:", error);
-            }
+            // Use a direct API call to update role in clerk to avoid redirect
+            await fetch("/api/auth/sync-role", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ role: dbRole }),
+            });
           }
 
           // Redirect to appropriate dashboard
           const role = clerkRole || dbRole;
           if (role === "CREATOR") {
-            window.location.href = "/creator/dashboard";
+            router.replace("/creator/dashboard");
           } else {
-            window.location.href = "/student/dashboard";
+            router.replace("/student/dashboard");
           }
-
           return;
         }
       } catch (error) {
@@ -69,7 +66,7 @@ export default function OnboardingPage() {
     }
 
     checkUserRole();
-  }, [isLoaded, user]);
+  }, [isLoaded, user, router]);
 
   // Trigger confetti when success state changes to true
   useEffect(() => {
@@ -81,15 +78,14 @@ export default function OnboardingPage() {
         origin: { y: 0.6 },
       });
 
-      // Redirect after success animation - use window.location for hard redirect
+      // Use router.replace instead of window.location for a clean redirect
       const timer = setTimeout(() => {
-        // Using window.location.href for a hard redirect
-        window.location.href = "/student/dashboard";
+        router.replace("/student/dashboard");
       }, 2000);
 
       return () => clearTimeout(timer);
     }
-  }, [success]);
+  }, [success, router]);
 
   const handleStartLearning = async () => {
     if (!user) {
@@ -101,14 +97,7 @@ export default function OnboardingPage() {
     setError(null);
 
     try {
-      // Update user metadata in Clerk to set role as STUDENT
-      await user.update({
-        unsafeMetadata: {
-          role: "STUDENT",
-        },
-      });
-
-      // Sync with database
+      // Sync with database first
       const response = await fetch("/api/auth/onboarding", {
         method: "POST",
         headers: {
@@ -121,8 +110,21 @@ export default function OnboardingPage() {
         throw new Error("Failed to complete onboarding");
       }
 
-      // Force a session refresh
-      await fetch("/api/auth/refresh");
+      // Wait for the role to be set in the database
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      // Sync the role to Clerk using our new API
+      const syncResponse = await fetch("/api/auth/sync-role", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ role: "STUDENT" }),
+      });
+
+      if (!syncResponse.ok) {
+        throw new Error("Failed to sync role");
+      }
 
       // Set success state to trigger confetti and redirect
       setSuccess(true);
