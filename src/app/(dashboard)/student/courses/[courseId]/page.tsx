@@ -1,14 +1,20 @@
+// app/(dashboard)/student/courses/[courseId]/page.tsx - Updated version
 import { Button } from "@/components/ui/button";
 import { CourseContent } from "@/components/course/courseContent";
 import { CourseHeader } from "@/components/course/courseHeader";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { use } from "react";
 
-export default function CoursePage({
-  params,
-}: {
-  params: { courseId: string };
-}) {
+interface CoursePageProps {
+  params: Promise<{ courseId: string }>;
+}
+
+export default function CoursePage({ params }: CoursePageProps) {
+  // Unwrap the params Promise using React.use()
+  const resolvedParams = use(params);
+  const courseId = resolvedParams.courseId;
+
   return (
     <div className="flex-1 p-4 md:p-8 pt-6">
       <div className="mb-6">
@@ -20,10 +26,10 @@ export default function CoursePage({
         </Link>
       </div>
 
-      <CourseHeader courseId={params.courseId} />
+      <CourseHeader courseId={courseId} />
 
       <div className="mt-8">
-        <CourseContent courseId={params.courseId} />
+        <CourseContent courseId={courseId} />
       </div>
     </div>
   );
