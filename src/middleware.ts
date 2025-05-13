@@ -1,7 +1,6 @@
-// middleware.ts
+// middleware.ts - Update to respect nocheck parameter
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
 
 // Define public routes that don't require authentication
 const isPublicRoute = createRouteMatcher([
@@ -19,6 +18,7 @@ const isPublicRoute = createRouteMatcher([
   '/about',
   '/contact',
   '/blog',
+  '/become-creator',
 ]);
 
 // Define routes for different roles
@@ -31,9 +31,20 @@ const isGenericDashboardRoute = createRouteMatcher(['/dashboard']);
 
 export default clerkMiddleware(async (auth, req) => {
   // Get auth data with await
-  const { userId, sessionClaims } = await auth();
-
+  const { userId } = await auth();
+  const url = new URL(req.url);
+  
   console.log(`🔒 Middleware check for URL: ${req.url}`);
+  
+  // Check if nocheck parameter is present - if so, skip role checks
+  const nocheck = url.searchParams.get('nocheck') === 'true';
+  if (nocheck) {
+    console.log('🔄 nocheck parameter detected, skipping role checks');
+    // Remove the nocheck parameter for cleaner URLs
+    url.searchParams.delete('nocheck');
+    // Forward to the URL without the nocheck parameter
+    return NextResponse.rewrite(url);
+  }
   
   // Skip most checks for public routes
   if (isPublicRoute(req)) {
@@ -48,62 +59,22 @@ export default clerkMiddleware(async (auth, req) => {
   
   // At this point, user is logged in
   
-  // Get role from metadata
-  const metadata = sessionClaims?.metadata as { role?: string } | undefined;
-  const role = metadata?.role;
-  
-  console.log(`👤 User ${userId} has role in session claims: ${role || "none"}`);
-  
   // Handle generic dashboard redirect
   if (isGenericDashboardRoute(req)) {
-    console.log("🔄 Generic dashboard detected, redirecting...");
-    
-    // If role is available in session claims
-    if (role) {
-      if (role === "CREATOR") {
-        console.log("👨‍🏫 Creator role, redirecting to creator dashboard");
-        return NextResponse.redirect(new URL('/creator/dashboard', req.url));
-      } else {
-        console.log("👨‍🎓 Student role, redirecting to student dashboard");
-        return NextResponse.redirect(new URL('/student/dashboard', req.url));
-      }
-    } else {
-      // If no role in session claims, redirect to onboarding
-      console.log("🆕 No role in session claims, redirecting to refresh then onboarding");
-      return NextResponse.redirect(new URL('/api/auth/refresh?redirect=/onboarding', req.url));
-    }
+    console.log("🔄 Generic dashboard detected, redirecting to role check");
+    return NextResponse.redirect(new URL('/api/auth/check-role?redirect=/dashboard', req.url));
   }
   
-  // If going to onboarding but already has a role, redirect to appropriate dashboard
-  if (isOnboardingRoute(req) && role) {
-    console.log(`User already has role ${role}, redirecting to appropriate dashboard`);
-    
-    if (role === "CREATOR") {
-      return NextResponse.redirect(new URL('/creator/dashboard', req.url));
-    } else {
-      return NextResponse.redirect(new URL('/student/dashboard', req.url));
-    }
+  // Only check creator routes - we can be permissive for student routes
+  if (isCreatorRoute(req)) {
+    console.log("👨‍🏫 Creator route detected, redirecting to role check");
+    return NextResponse.redirect(new URL(`/api/auth/check-role?redirect=${encodeURIComponent(req.url)}`, req.url));
   }
   
-  // If trying to access creator routes but not a creator
-  if (isCreatorRoute(req) && role !== "CREATOR") {
-    console.log(`🚫 User with role ${role} trying to access creator route`);
-    return NextResponse.redirect(new URL('/student/dashboard', req.url));
-  }
-  
-  // If logged in and going to sign-in or sign-up, redirect to dashboard
+  // If logged in and going to sign-in or sign-up, redirect to dashboard check
   if (req.nextUrl.pathname === '/sign-in' || req.nextUrl.pathname === '/sign-up') {
     console.log('👤 Already logged in, redirecting to dashboard');
-    
-    if (role) {
-      if (role === "CREATOR") {
-        return NextResponse.redirect(new URL('/creator/dashboard', req.url));
-      } else {
-        return NextResponse.redirect(new URL('/student/dashboard', req.url));
-      }
-    } else {
-      return NextResponse.redirect(new URL('/onboarding', req.url));
-    }
+    return NextResponse.redirect(new URL('/api/auth/check-role?redirect=/dashboard', req.url));
   }
 
   return NextResponse.next();

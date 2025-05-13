@@ -1,3 +1,5 @@
+// components/dashboard/sidebar.tsx - Update to better handle role switching
+
 "use client";
 
 import Link from "next/link";
@@ -10,7 +12,8 @@ import {
   Settings,
   GraduationCap,
 } from "lucide-react";
-import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import { useState, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -62,14 +65,25 @@ const studentRoutes = [
 
 export function DashboardSidebar() {
   const pathname = usePathname();
-  const { userId } = useAuth();
+  const { user, isLoaded } = useUser();
+  const [userRole, setUserRole] = useState<string | null>(null);
 
-  // In a real app, we'd get this from the backend based on the user role
-  // For now, we'll use a simple heuristic based on the URL
-  const isCreator = pathname.includes("/creator");
-  const routes = isCreator ? creatorRoutes : studentRoutes;
+  // Determine user role from Clerk metadata
+  useEffect(() => {
+    if (isLoaded && user) {
+      const role = (user.unsafeMetadata?.role as string) || null;
+      setUserRole(role);
+    }
+  }, [isLoaded, user]);
 
-  if (!userId) {
+  // More accurate role detection - check both URL and metadata
+  const isCreatorSection = pathname.includes("/creator");
+  const isCreator = userRole === "CREATOR";
+
+  // Choose routes based on current section (fallback to URL-based detection)
+  const routes = isCreatorSection ? creatorRoutes : studentRoutes;
+
+  if (!isLoaded || !user) {
     return null;
   }
 
@@ -96,7 +110,12 @@ export function DashboardSidebar() {
           </Link>
         ))}
       </div>
-      {isCreator && (
+      {isCreatorSection && !isCreator && (
+        <div className="mt-auto mb-4 mx-6 p-3 bg-yellow-50 text-yellow-800 rounded-md text-sm">
+          <p>You're viewing the creator area without creator permissions.</p>
+        </div>
+      )}
+      {isCreatorSection && (
         <Link
           href="/student/dashboard"
           className="mt-auto mb-4 mx-6 flex items-center gap-x-2 text-sm"
@@ -105,7 +124,7 @@ export function DashboardSidebar() {
           Switch to Student
         </Link>
       )}
-      {!isCreator && (
+      {!isCreatorSection && isCreator && (
         <Link
           href="/creator/dashboard"
           className="mt-auto mb-4 mx-6 flex items-center gap-x-2 text-sm"

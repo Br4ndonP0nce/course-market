@@ -1,4 +1,4 @@
-// app/api/auth/sync-role/route.ts
+// app/api/auth/sync-role/route.ts - Updated to use unsafeMetadata consistently
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
@@ -21,16 +21,24 @@ export async function POST(req: Request) {
       return new NextResponse("Invalid role", { status: 400 });
     }
     
-    // Update Clerk metadata with properly initialized client
+    console.log(`Updating role for user ${userId} to ${role}`);
+    
+    // Update Clerk metadata - ONLY use unsafeMetadata for consistency
     await client.users.updateUser(userId, {
-      privateMetadata: {
-        role,
+      unsafeMetadata: {
+        role: role,
+        lastUpdated: new Date().toISOString()
       },
     });
+    
+    // Verify the update was successful
+    const updatedUser = await client.users.getUser(userId);
+    console.log("Updated user metadata:", updatedUser.unsafeMetadata);
     
     return NextResponse.json({
       success: true,
       message: "User role synchronized",
+      metadata: updatedUser.unsafeMetadata
     });
   } catch (error) {
     console.error("Role sync error:", error);

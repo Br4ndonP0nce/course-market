@@ -23,7 +23,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="space-x-4">
-              <Link href="/creator/dashboard">
+              <Link href="/become-creator">
                 <Button size="lg" className="font-medium">
                   Start creating
                   <ArrowRight className="ml-2 h-4 w-4" />
