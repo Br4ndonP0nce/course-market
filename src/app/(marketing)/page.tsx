@@ -12,20 +12,20 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-20 md:py-28">
         <div className="container px-4 md:px-6 mx-auto max-w-7xl">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
-                Share your knowledge. <br /> Earn from your expertise.
+          <div className="flex flex-col items-center space-y-4 text-center ">
+            <div className="space-y-2 flex flex-col items-center justify-center">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl">
+                How to Become an Irreplaceable Video Editor in 90 Days Even If
+                You Have No Experience
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Create, market, and sell digital products in minutes. Join
-                thousands of creators earning online.
+                For publishers who want to achieve more and charge much more
               </p>
             </div>
             <div className="space-x-4">
-              <Link href="/become-creator">
+              <Link href="/student/dashboard">
                 <Button size="lg" className="font-medium">
-                  Start creating
+                  Join Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
@@ -62,12 +62,9 @@ export default function HomePage() {
                   <path d="M5 13v2a2 2 0 0 0 2 2h3" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold">
-                Create Once, Sell Forever
-              </h3>
+              <h3 className="mb-2 text-xl font-bold">Que obtienes?</h3>
               <p className="text-gray-500">
-                Build your digital product once and generate passive income for
-                years to come.
+                Acceso a 8 cursos de edición, marca personal y ventas
               </p>
             </div>
             <div className="rounded-lg border bg-white p-8 shadow-sm">
@@ -90,10 +87,9 @@ export default function HomePage() {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold">Global Audience</h3>
+              <h3 className="mb-2 text-xl font-bold">Que obtienes?</h3>
               <p className="text-gray-500">
-                Reach students from around the world and scale your impact
-                beyond borders.
+                Acceso a más de 150 lecciones detalladas
               </p>
             </div>
             <div className="rounded-lg border bg-white p-8 shadow-sm">
@@ -114,7 +110,7 @@ export default function HomePage() {
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                 </svg>
               </div>
-              <h3 className="mb-2 text-xl font-bold">Hassle-free Payments</h3>
+              <h3 className="mb-2 text-xl font-bold">Mercado multipago</h3>
               <p className="text-gray-500">
                 Secure payment processing with instant payouts and detailed
                 analytics.
@@ -125,7 +121,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16">
+      {/*<section className="py-16">
         <div className="container px-4 md:px-6 mx-auto max-w-7xl">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -170,7 +166,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Trending Courses Section */}
       <TrendingCourses />
@@ -179,7 +175,7 @@ export default function HomePage() {
       <Testimonials />
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary text-white">
+      {/*  <section className="py-16 bg-primary text-white">
         <div className="container px-4 md:px-6 mx-auto max-w-7xl">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -188,7 +184,7 @@ export default function HomePage() {
               </h2>
               <p className="mx-auto max-w-[600px] text-primary-foreground/80 md:text-xl">
                 Join thousands of creators who are monetizing their knowledge
-                with CourseHub.
+                with Edicion Persuasiva.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -200,7 +196,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
     </div>
   );
 }

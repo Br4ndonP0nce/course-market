@@ -34,7 +34,7 @@ export function MarketingNavbar() {
       <div className="flex items-center justify-between mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16">
         <div className="flex items-center">
           <Link href="/" className="font-bold text-xl">
-            CourseHub
+            Edicion Persuasiva
           </Link>
           <nav className="hidden md:flex ml-10 space-x-4">
             {routes.map((route) => (

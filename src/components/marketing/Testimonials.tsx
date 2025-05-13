@@ -8,7 +8,7 @@ export function Testimonials() {
               Success Stories
             </h2>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-              Here's what creators are saying about CourseHub.
+              Here's what creators are saying about Edicion Persuasiva.
             </p>
           </div>
         </div>
@@ -38,9 +38,9 @@ export function Testimonials() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "Since launching my online yoga courses on CourseHub, I've been
-              able to reach students across the world. The platform made it
-              incredibly easy to upload my content and start selling."
+              "Since launching my online yoga courses on Edicion Persuasiva,
+              I've been able to reach students across the world. The platform
+              made it incredibly easy to upload my content and start selling."
             </p>
             <div className="flex mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -84,9 +84,9 @@ export function Testimonials() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "I've tried several platforms, but CourseHub has by far the best
-              creator tools. The analytics dashboard helps me understand what's
-              working and optimize my course content."
+              "I've tried several platforms, but Edicion Persuasiva has by far
+              the best creator tools. The analytics dashboard helps me
+              understand what's working and optimize my course content."
             </p>
             <div className="flex mt-4">
               {[1, 2, 3, 4, 5].map((star) => (

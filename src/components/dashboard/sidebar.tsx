@@ -91,7 +91,7 @@ export function DashboardSidebar() {
     <div className="h-full border-r bg-white flex flex-col w-64">
       <div className="p-6">
         <Link href="/">
-          <h1 className="font-bold text-xl">CourseHub</h1>
+          <h1 className="font-bold text-xl">Edicion Persuasiva</h1>
         </Link>
       </div>
       <div className="flex flex-col w-full">

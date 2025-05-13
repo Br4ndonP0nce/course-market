@@ -149,7 +149,7 @@ export default function OnboardingPage() {
       <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg transform transition-all">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">
-            Welcome to CourseHub!
+            Welcome to Edicion Persuasiva!
           </h1>
 
           <div className="rounded-lg bg-indigo-100 p-5 mb-8">

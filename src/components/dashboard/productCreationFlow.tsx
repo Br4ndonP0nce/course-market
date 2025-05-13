@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -7,16 +8,16 @@ import { toast } from "sonner";
 import ProductTypeSelection from "../forms/product-steps/productTypeSelection";
 import BasicInfoForm from "../forms/product-steps/BasicInfoForm";
 import PricingForm from "../forms/product-steps/PricingForm";
-import MembershipAreaForm from "./product-steps/MembershipAreaForm";
-import ContentCreationForm from "./product-steps/ContentCreationForm";
-import RegistrationSummary from "./product-steps/RegistrationSummary";
-import SuccessScreen from "./product-steps/SuccessScreen";
+import MembershipAreaForm from "../forms/product-steps/MembershipAreaForm";
+import ContentCreationForm from "../forms/product-steps/ContentCreationForm";
+import RegistrationSummary from "../forms/product-steps/RegistrationSummary";
+import SuccessScreen from "../forms/product-steps/SuccesScreen";
 import StepTitle from "../forms/product-steps/StepTitle";
 
 const ProductCreationFlow = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const [productType, setProductType] = useState(null);
+  const [productType, setProductType] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     basic: null,
     pricing: null,
@@ -25,27 +26,27 @@ const ProductCreationFlow = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleProductTypeSelection = (type) => {
+  const handleProductTypeSelection = (type: string) => {
     setProductType(type);
     setStep(2);
   };
 
-  const handleBasicInfoSubmit = (data) => {
+  const handleBasicInfoSubmit = (data: any) => {
     setFormData({ ...formData, basic: data });
     setStep(3);
   };
 
-  const handlePricingSubmit = (data) => {
+  const handlePricingSubmit = (data: any) => {
     setFormData({ ...formData, pricing: data });
     setStep(4);
   };
 
-  const handleMembershipSubmit = (data) => {
+  const handleMembershipSubmit = (data: any) => {
     setFormData({ ...formData, membership: data });
     setStep(5);
   };
 
-  const handleContentSubmit = (data) => {
+  const handleContentSubmit = (data: any) => {
     setFormData({ ...formData, content: data });
     setStep(6);
   };
@@ -56,6 +57,7 @@ const ProductCreationFlow = () => {
     try {
       // Prepare the data for submission to API
       const productData = {
+        type: productType,
         basic: formData.basic,
         pricing: formData.pricing,
         membership: formData.membership,
@@ -82,7 +84,9 @@ const ProductCreationFlow = () => {
       setStep(7);
     } catch (error) {
       console.error("Error creating product:", error);
-      toast.error(error.message || "Something went wrong");
+      toast.error(
+        error instanceof Error ? error.message : "Something went wrong"
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -91,58 +95,6 @@ const ProductCreationFlow = () => {
   const handleFinish = () => {
     // Reset the flow and go to dashboard
     router.push("/creator/products");
-  };
-
-  // Map steps to components
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return <ProductTypeSelection onSelect={handleProductTypeSelection} />;
-      case 2:
-        return (
-          <BasicInfoForm
-            initialData={formData.basic}
-            onSubmit={handleBasicInfoSubmit}
-            onBack={() => setStep(1)}
-          />
-        );
-      case 3:
-        return (
-          <PricingForm
-            initialData={formData.pricing}
-            onSubmit={handlePricingSubmit}
-            onBack={() => setStep(2)}
-          />
-        );
-      case 4:
-        return (
-          <MembershipAreaForm
-            initialData={formData.membership}
-            onSubmit={handleMembershipSubmit}
-            onBack={() => setStep(3)}
-          />
-        );
-      case 5:
-        return (
-          <ContentCreationForm
-            onSubmit={handleContentSubmit}
-            onBack={() => setStep(4)}
-          />
-        );
-      case 6:
-        return (
-          <RegistrationSummary
-            formData={formData}
-            isSubmitting={isSubmitting}
-            onSubmit={handleFinalSubmit}
-            onBack={() => setStep(5)}
-          />
-        );
-      case 7:
-        return <SuccessScreen productData={formData} onDone={handleFinish} />;
-      default:
-        return <ProductTypeSelection onSelect={handleProductTypeSelection} />;
-    }
   };
 
   // Calculate progress
@@ -156,7 +108,8 @@ const ProductCreationFlow = () => {
         <div className="mb-8">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
             <div>
-              <span className="font-medium">Step {step}</span> of {totalSteps}
+              <span className="font-medium">Step {step}</span> of{" "}
+              {totalSteps - 1}
             </div>
             <div>{progress}% Complete</div>
           </div>
@@ -171,23 +124,55 @@ const ProductCreationFlow = () => {
         </div>
       )}
 
-      {/* Step title */}
-      {step < 7 && (
-        <div className="mb-4">
-          <StepTitle step={step} productType={productType} />
-        </div>
-      )}
-
-      {/* Main content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={step}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
-          {renderStep()}
+          {step === 1 && (
+            <ProductTypeSelection onSelect={handleProductTypeSelection} />
+          )}
+          {step === 2 && (
+            <BasicInfoForm
+              initialData={formData.basic}
+              onSubmit={handleBasicInfoSubmit}
+              onBack={() => setStep(1)}
+            />
+          )}
+          {step === 3 && (
+            <PricingForm
+              initialData={formData.pricing}
+              onSubmit={handlePricingSubmit}
+              onBack={() => setStep(2)}
+            />
+          )}
+          {step === 4 && (
+            <MembershipAreaForm
+              initialData={formData.membership}
+              onSubmit={handleMembershipSubmit}
+              onBack={() => setStep(3)}
+            />
+          )}
+          {step === 5 && (
+            <ContentCreationForm
+              onSubmit={handleContentSubmit}
+              onBack={() => setStep(4)}
+            />
+          )}
+          {step === 6 && (
+            <RegistrationSummary
+              formData={formData}
+              isSubmitting={isSubmitting}
+              onSubmit={handleFinalSubmit}
+              onBack={() => setStep(5)}
+            />
+          )}
+          {step === 7 && (
+            <SuccessScreen productData={formData} onDone={handleFinish} />
+          )}
         </motion.div>
       </AnimatePresence>
     </div>

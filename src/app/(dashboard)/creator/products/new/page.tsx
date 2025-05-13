@@ -1,6 +1,6 @@
 //import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { CreateProductForm } from "@/components/forms/createProductForm";
-
+import ProductCreationFlow from "@/components/dashboard/productCreationFlow";
 export default function NewProductPage() {
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
@@ -9,7 +9,7 @@ export default function NewProductPage() {
         text="Add a new digital product to your catalog"
       />
       <div className="grid gap-4">
-        <CreateProductForm />
+        <ProductCreationFlow />
       </div>
     </div>
   );

@@ -15,22 +15,22 @@ import { Button } from "@/components/ui/button";
 const MOCK_COURSES = [
   {
     id: "1",
-    title: "Complete Web Development Bootcamp",
-    description: "Learn HTML, CSS, JavaScript, React, Node.js and more.",
+    title: "Complete Guide to persuasive writing",
+    description: "Learn how to write compelling copy that converts.",
     price: 9900, // in cents
     imageUrl: "https://placehold.co/400x225",
     creator: {
-      name: "John Doe",
+      name: "Diego Hernandez",
     },
   },
   {
     id: "2",
-    title: "Data Science Fundamentals",
-    description: "Master Python, pandas, NumPy, and machine learning basics.",
+    title: "Editing in davinci resolve",
+    description: "Master video editing with this comprehensive course.",
     price: 7900,
     imageUrl: "https://placehold.co/400x225",
     creator: {
-      name: "Jane Smith",
+      name: "Diego Hernandez",
     },
   },
   {
@@ -40,7 +40,7 @@ const MOCK_COURSES = [
     price: 5900,
     imageUrl: "https://placehold.co/400x225",
     creator: {
-      name: "Mike Johnson",
+      name: "Diego Hernandez",
     },
   },
 ];
@@ -144,7 +144,7 @@ export function Testimonials() {
               Success Stories
             </h2>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-              Here's what creators are saying about CourseHub.
+              Here's what creators are saying about Edicion Persuasiva.
             </p>
           </div>
         </div>
@@ -174,9 +174,9 @@ export function Testimonials() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "Since launching my online yoga courses on CourseHub, I've been
-              able to reach students across the world. The platform made it
-              incredibly easy to upload my content and start selling."
+              "Since launching my online yoga courses on Edicion Persuasiva,
+              I've been able to reach students across the world. The platform
+              made it incredibly easy to upload my content and start selling."
             </p>
             <div className="flex mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -220,9 +220,9 @@ export function Testimonials() {
               </div>
             </div>
             <p className="text-gray-600 italic">
-              "I've tried several platforms, but CourseHub has by far the best
-              creator tools. The analytics dashboard helps me understand what's
-              working and optimize my course content."
+              "I've tried several platforms, but Edicion Persuasiva has by far
+              the best creator tools. The analytics dashboard helps me
+              understand what's working and optimize my course content."
             </p>
             <div className="flex mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
