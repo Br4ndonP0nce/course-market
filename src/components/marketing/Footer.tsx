@@ -124,7 +124,8 @@ export function Footer() {
         </div>
         <div className="mt-8 border-t pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} CourseHub. All rights reserved.
+            &copy; {new Date().getFullYear()} Edicion Persuasiva. All rights
+            reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="#" className="text-gray-500 hover:text-gray-900">
