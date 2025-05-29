@@ -138,6 +138,9 @@ exports.Prisma.ProductScalarFieldEnum = {
   price: 'price',
   published: 'published',
   featuredImage: 'featuredImage',
+  categories: 'categories',
+  language: 'language',
+  primaryCountry: 'primaryCountry',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   creatorId: 'creatorId'
@@ -146,6 +149,7 @@ exports.Prisma.ProductScalarFieldEnum = {
 exports.Prisma.ModuleScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  description: 'description',
   position: 'position',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -160,6 +164,7 @@ exports.Prisma.LessonScalarFieldEnum = {
   contentUrl: 'contentUrl',
   position: 'position',
   isPreview: 'isPreview',
+  duration: 'duration',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   moduleId: 'moduleId'
