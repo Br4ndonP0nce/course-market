@@ -138,6 +138,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   price: 'price',
   published: 'published',
   featuredImage: 'featuredImage',
+  featuredImageUploadStatus: 'featuredImageUploadStatus',
+  featuredImageUrl: 'featuredImageUrl',
   categories: 'categories',
   language: 'language',
   primaryCountry: 'primaryCountry',
@@ -165,6 +167,15 @@ exports.Prisma.LessonScalarFieldEnum = {
   position: 'position',
   isPreview: 'isPreview',
   duration: 'duration',
+  uploadStatus: 'uploadStatus',
+  processingJobId: 'processingJobId',
+  processingProgress: 'processingProgress',
+  processingError: 'processingError',
+  rawVideoUrl: 'rawVideoUrl',
+  videoQualities: 'videoQualities',
+  thumbnailUrl: 'thumbnailUrl',
+  uploadedAt: 'uploadedAt',
+  processedAt: 'processedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   moduleId: 'moduleId'
@@ -196,6 +207,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -204,6 +220,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.UserRole = exports.$Enums.UserRole = {
   STUDENT: 'STUDENT',

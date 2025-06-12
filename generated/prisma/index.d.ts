@@ -2695,6 +2695,8 @@ export namespace Prisma {
     price: Decimal | null
     published: boolean | null
     featuredImage: string | null
+    featuredImageUploadStatus: string | null
+    featuredImageUrl: string | null
     categories: string | null
     language: string | null
     primaryCountry: string | null
@@ -2711,6 +2713,8 @@ export namespace Prisma {
     price: Decimal | null
     published: boolean | null
     featuredImage: string | null
+    featuredImageUploadStatus: string | null
+    featuredImageUrl: string | null
     categories: string | null
     language: string | null
     primaryCountry: string | null
@@ -2727,6 +2731,8 @@ export namespace Prisma {
     price: number
     published: number
     featuredImage: number
+    featuredImageUploadStatus: number
+    featuredImageUrl: number
     categories: number
     language: number
     primaryCountry: number
@@ -2753,6 +2759,8 @@ export namespace Prisma {
     price?: true
     published?: true
     featuredImage?: true
+    featuredImageUploadStatus?: true
+    featuredImageUrl?: true
     categories?: true
     language?: true
     primaryCountry?: true
@@ -2769,6 +2777,8 @@ export namespace Prisma {
     price?: true
     published?: true
     featuredImage?: true
+    featuredImageUploadStatus?: true
+    featuredImageUrl?: true
     categories?: true
     language?: true
     primaryCountry?: true
@@ -2785,6 +2795,8 @@ export namespace Prisma {
     price?: true
     published?: true
     featuredImage?: true
+    featuredImageUploadStatus?: true
+    featuredImageUrl?: true
     categories?: true
     language?: true
     primaryCountry?: true
@@ -2888,6 +2900,8 @@ export namespace Prisma {
     price: Decimal
     published: boolean
     featuredImage: string | null
+    featuredImageUploadStatus: string | null
+    featuredImageUrl: string | null
     categories: string | null
     language: string | null
     primaryCountry: string | null
@@ -2923,6 +2937,8 @@ export namespace Prisma {
     price?: boolean
     published?: boolean
     featuredImage?: boolean
+    featuredImageUploadStatus?: boolean
+    featuredImageUrl?: boolean
     categories?: boolean
     language?: boolean
     primaryCountry?: boolean
@@ -2943,6 +2959,8 @@ export namespace Prisma {
     price?: boolean
     published?: boolean
     featuredImage?: boolean
+    featuredImageUploadStatus?: boolean
+    featuredImageUrl?: boolean
     categories?: boolean
     language?: boolean
     primaryCountry?: boolean
@@ -2960,6 +2978,8 @@ export namespace Prisma {
     price?: boolean
     published?: boolean
     featuredImage?: boolean
+    featuredImageUploadStatus?: boolean
+    featuredImageUrl?: boolean
     categories?: boolean
     language?: boolean
     primaryCountry?: boolean
@@ -2977,6 +2997,8 @@ export namespace Prisma {
     price?: boolean
     published?: boolean
     featuredImage?: boolean
+    featuredImageUploadStatus?: boolean
+    featuredImageUrl?: boolean
     categories?: boolean
     language?: boolean
     primaryCountry?: boolean
@@ -2985,7 +3007,7 @@ export namespace Prisma {
     creatorId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "price" | "published" | "featuredImage" | "categories" | "language" | "primaryCountry" | "createdAt" | "updatedAt" | "creatorId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "price" | "published" | "featuredImage" | "featuredImageUploadStatus" | "featuredImageUrl" | "categories" | "language" | "primaryCountry" | "createdAt" | "updatedAt" | "creatorId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     modules?: boolean | Product$modulesArgs<ExtArgs>
     creator?: boolean | UserDefaultArgs<ExtArgs>
@@ -3014,6 +3036,8 @@ export namespace Prisma {
       price: Prisma.Decimal
       published: boolean
       featuredImage: string | null
+      featuredImageUploadStatus: string | null
+      featuredImageUrl: string | null
       categories: string | null
       language: string | null
       primaryCountry: string | null
@@ -3453,6 +3477,8 @@ export namespace Prisma {
     readonly price: FieldRef<"Product", 'Decimal'>
     readonly published: FieldRef<"Product", 'Boolean'>
     readonly featuredImage: FieldRef<"Product", 'String'>
+    readonly featuredImageUploadStatus: FieldRef<"Product", 'String'>
+    readonly featuredImageUrl: FieldRef<"Product", 'String'>
     readonly categories: FieldRef<"Product", 'String'>
     readonly language: FieldRef<"Product", 'String'>
     readonly primaryCountry: FieldRef<"Product", 'String'>
@@ -5084,11 +5110,13 @@ export namespace Prisma {
   export type LessonAvgAggregateOutputType = {
     position: number | null
     duration: number | null
+    processingProgress: number | null
   }
 
   export type LessonSumAggregateOutputType = {
     position: number | null
     duration: number | null
+    processingProgress: number | null
   }
 
   export type LessonMinAggregateOutputType = {
@@ -5100,6 +5128,14 @@ export namespace Prisma {
     position: number | null
     isPreview: boolean | null
     duration: number | null
+    uploadStatus: string | null
+    processingJobId: string | null
+    processingProgress: number | null
+    processingError: string | null
+    rawVideoUrl: string | null
+    thumbnailUrl: string | null
+    uploadedAt: Date | null
+    processedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     moduleId: string | null
@@ -5114,6 +5150,14 @@ export namespace Prisma {
     position: number | null
     isPreview: boolean | null
     duration: number | null
+    uploadStatus: string | null
+    processingJobId: string | null
+    processingProgress: number | null
+    processingError: string | null
+    rawVideoUrl: string | null
+    thumbnailUrl: string | null
+    uploadedAt: Date | null
+    processedAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
     moduleId: string | null
@@ -5128,6 +5172,15 @@ export namespace Prisma {
     position: number
     isPreview: number
     duration: number
+    uploadStatus: number
+    processingJobId: number
+    processingProgress: number
+    processingError: number
+    rawVideoUrl: number
+    videoQualities: number
+    thumbnailUrl: number
+    uploadedAt: number
+    processedAt: number
     createdAt: number
     updatedAt: number
     moduleId: number
@@ -5138,11 +5191,13 @@ export namespace Prisma {
   export type LessonAvgAggregateInputType = {
     position?: true
     duration?: true
+    processingProgress?: true
   }
 
   export type LessonSumAggregateInputType = {
     position?: true
     duration?: true
+    processingProgress?: true
   }
 
   export type LessonMinAggregateInputType = {
@@ -5154,6 +5209,14 @@ export namespace Prisma {
     position?: true
     isPreview?: true
     duration?: true
+    uploadStatus?: true
+    processingJobId?: true
+    processingProgress?: true
+    processingError?: true
+    rawVideoUrl?: true
+    thumbnailUrl?: true
+    uploadedAt?: true
+    processedAt?: true
     createdAt?: true
     updatedAt?: true
     moduleId?: true
@@ -5168,6 +5231,14 @@ export namespace Prisma {
     position?: true
     isPreview?: true
     duration?: true
+    uploadStatus?: true
+    processingJobId?: true
+    processingProgress?: true
+    processingError?: true
+    rawVideoUrl?: true
+    thumbnailUrl?: true
+    uploadedAt?: true
+    processedAt?: true
     createdAt?: true
     updatedAt?: true
     moduleId?: true
@@ -5182,6 +5253,15 @@ export namespace Prisma {
     position?: true
     isPreview?: true
     duration?: true
+    uploadStatus?: true
+    processingJobId?: true
+    processingProgress?: true
+    processingError?: true
+    rawVideoUrl?: true
+    videoQualities?: true
+    thumbnailUrl?: true
+    uploadedAt?: true
+    processedAt?: true
     createdAt?: true
     updatedAt?: true
     moduleId?: true
@@ -5283,6 +5363,15 @@ export namespace Prisma {
     position: number
     isPreview: boolean
     duration: number | null
+    uploadStatus: string | null
+    processingJobId: string | null
+    processingProgress: number | null
+    processingError: string | null
+    rawVideoUrl: string | null
+    videoQualities: JsonValue | null
+    thumbnailUrl: string | null
+    uploadedAt: Date | null
+    processedAt: Date | null
     createdAt: Date
     updatedAt: Date
     moduleId: string
@@ -5316,6 +5405,15 @@ export namespace Prisma {
     position?: boolean
     isPreview?: boolean
     duration?: boolean
+    uploadStatus?: boolean
+    processingJobId?: boolean
+    processingProgress?: boolean
+    processingError?: boolean
+    rawVideoUrl?: boolean
+    videoQualities?: boolean
+    thumbnailUrl?: boolean
+    uploadedAt?: boolean
+    processedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     moduleId?: boolean
@@ -5333,6 +5431,15 @@ export namespace Prisma {
     position?: boolean
     isPreview?: boolean
     duration?: boolean
+    uploadStatus?: boolean
+    processingJobId?: boolean
+    processingProgress?: boolean
+    processingError?: boolean
+    rawVideoUrl?: boolean
+    videoQualities?: boolean
+    thumbnailUrl?: boolean
+    uploadedAt?: boolean
+    processedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     moduleId?: boolean
@@ -5348,6 +5455,15 @@ export namespace Prisma {
     position?: boolean
     isPreview?: boolean
     duration?: boolean
+    uploadStatus?: boolean
+    processingJobId?: boolean
+    processingProgress?: boolean
+    processingError?: boolean
+    rawVideoUrl?: boolean
+    videoQualities?: boolean
+    thumbnailUrl?: boolean
+    uploadedAt?: boolean
+    processedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     moduleId?: boolean
@@ -5363,12 +5479,21 @@ export namespace Prisma {
     position?: boolean
     isPreview?: boolean
     duration?: boolean
+    uploadStatus?: boolean
+    processingJobId?: boolean
+    processingProgress?: boolean
+    processingError?: boolean
+    rawVideoUrl?: boolean
+    videoQualities?: boolean
+    thumbnailUrl?: boolean
+    uploadedAt?: boolean
+    processedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     moduleId?: boolean
   }
 
-  export type LessonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "contentType" | "contentUrl" | "position" | "isPreview" | "duration" | "createdAt" | "updatedAt" | "moduleId", ExtArgs["result"]["lesson"]>
+  export type LessonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "contentType" | "contentUrl" | "position" | "isPreview" | "duration" | "uploadStatus" | "processingJobId" | "processingProgress" | "processingError" | "rawVideoUrl" | "videoQualities" | "thumbnailUrl" | "uploadedAt" | "processedAt" | "createdAt" | "updatedAt" | "moduleId", ExtArgs["result"]["lesson"]>
   export type LessonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     module?: boolean | ModuleDefaultArgs<ExtArgs>
     progress?: boolean | Lesson$progressArgs<ExtArgs>
@@ -5396,6 +5521,15 @@ export namespace Prisma {
       position: number
       isPreview: boolean
       duration: number | null
+      uploadStatus: string | null
+      processingJobId: string | null
+      processingProgress: number | null
+      processingError: string | null
+      rawVideoUrl: string | null
+      videoQualities: Prisma.JsonValue | null
+      thumbnailUrl: string | null
+      uploadedAt: Date | null
+      processedAt: Date | null
       createdAt: Date
       updatedAt: Date
       moduleId: string
@@ -5832,6 +5966,15 @@ export namespace Prisma {
     readonly position: FieldRef<"Lesson", 'Int'>
     readonly isPreview: FieldRef<"Lesson", 'Boolean'>
     readonly duration: FieldRef<"Lesson", 'Int'>
+    readonly uploadStatus: FieldRef<"Lesson", 'String'>
+    readonly processingJobId: FieldRef<"Lesson", 'String'>
+    readonly processingProgress: FieldRef<"Lesson", 'Int'>
+    readonly processingError: FieldRef<"Lesson", 'String'>
+    readonly rawVideoUrl: FieldRef<"Lesson", 'String'>
+    readonly videoQualities: FieldRef<"Lesson", 'Json'>
+    readonly thumbnailUrl: FieldRef<"Lesson", 'String'>
+    readonly uploadedAt: FieldRef<"Lesson", 'DateTime'>
+    readonly processedAt: FieldRef<"Lesson", 'DateTime'>
     readonly createdAt: FieldRef<"Lesson", 'DateTime'>
     readonly updatedAt: FieldRef<"Lesson", 'DateTime'>
     readonly moduleId: FieldRef<"Lesson", 'String'>
@@ -8569,6 +8712,8 @@ export namespace Prisma {
     price: 'price',
     published: 'published',
     featuredImage: 'featuredImage',
+    featuredImageUploadStatus: 'featuredImageUploadStatus',
+    featuredImageUrl: 'featuredImageUrl',
     categories: 'categories',
     language: 'language',
     primaryCountry: 'primaryCountry',
@@ -8602,6 +8747,15 @@ export namespace Prisma {
     position: 'position',
     isPreview: 'isPreview',
     duration: 'duration',
+    uploadStatus: 'uploadStatus',
+    processingJobId: 'processingJobId',
+    processingProgress: 'processingProgress',
+    processingError: 'processingError',
+    rawVideoUrl: 'rawVideoUrl',
+    videoQualities: 'videoQualities',
+    thumbnailUrl: 'thumbnailUrl',
+    uploadedAt: 'uploadedAt',
+    processedAt: 'processedAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     moduleId: 'moduleId'
@@ -8645,6 +8799,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -8659,6 +8821,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -8754,6 +8925,20 @@ export namespace Prisma {
    * Reference to a field of type 'ContentType[]'
    */
   export type ListEnumContentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContentType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -8867,6 +9052,8 @@ export namespace Prisma {
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     published?: BoolFilter<"Product"> | boolean
     featuredImage?: StringNullableFilter<"Product"> | string | null
+    featuredImageUploadStatus?: StringNullableFilter<"Product"> | string | null
+    featuredImageUrl?: StringNullableFilter<"Product"> | string | null
     categories?: StringNullableFilter<"Product"> | string | null
     language?: StringNullableFilter<"Product"> | string | null
     primaryCountry?: StringNullableFilter<"Product"> | string | null
@@ -8886,6 +9073,8 @@ export namespace Prisma {
     price?: SortOrder
     published?: SortOrder
     featuredImage?: SortOrderInput | SortOrder
+    featuredImageUploadStatus?: SortOrderInput | SortOrder
+    featuredImageUrl?: SortOrderInput | SortOrder
     categories?: SortOrderInput | SortOrder
     language?: SortOrderInput | SortOrder
     primaryCountry?: SortOrderInput | SortOrder
@@ -8908,6 +9097,8 @@ export namespace Prisma {
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     published?: BoolFilter<"Product"> | boolean
     featuredImage?: StringNullableFilter<"Product"> | string | null
+    featuredImageUploadStatus?: StringNullableFilter<"Product"> | string | null
+    featuredImageUrl?: StringNullableFilter<"Product"> | string | null
     categories?: StringNullableFilter<"Product"> | string | null
     language?: StringNullableFilter<"Product"> | string | null
     primaryCountry?: StringNullableFilter<"Product"> | string | null
@@ -8927,6 +9118,8 @@ export namespace Prisma {
     price?: SortOrder
     published?: SortOrder
     featuredImage?: SortOrderInput | SortOrder
+    featuredImageUploadStatus?: SortOrderInput | SortOrder
+    featuredImageUrl?: SortOrderInput | SortOrder
     categories?: SortOrderInput | SortOrder
     language?: SortOrderInput | SortOrder
     primaryCountry?: SortOrderInput | SortOrder
@@ -8951,6 +9144,8 @@ export namespace Prisma {
     price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     published?: BoolWithAggregatesFilter<"Product"> | boolean
     featuredImage?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    featuredImageUploadStatus?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    featuredImageUrl?: StringNullableWithAggregatesFilter<"Product"> | string | null
     categories?: StringNullableWithAggregatesFilter<"Product"> | string | null
     language?: StringNullableWithAggregatesFilter<"Product"> | string | null
     primaryCountry?: StringNullableWithAggregatesFilter<"Product"> | string | null
@@ -9041,6 +9236,15 @@ export namespace Prisma {
     position?: IntFilter<"Lesson"> | number
     isPreview?: BoolFilter<"Lesson"> | boolean
     duration?: IntNullableFilter<"Lesson"> | number | null
+    uploadStatus?: StringNullableFilter<"Lesson"> | string | null
+    processingJobId?: StringNullableFilter<"Lesson"> | string | null
+    processingProgress?: IntNullableFilter<"Lesson"> | number | null
+    processingError?: StringNullableFilter<"Lesson"> | string | null
+    rawVideoUrl?: StringNullableFilter<"Lesson"> | string | null
+    videoQualities?: JsonNullableFilter<"Lesson">
+    thumbnailUrl?: StringNullableFilter<"Lesson"> | string | null
+    uploadedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
+    processedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
     createdAt?: DateTimeFilter<"Lesson"> | Date | string
     updatedAt?: DateTimeFilter<"Lesson"> | Date | string
     moduleId?: StringFilter<"Lesson"> | string
@@ -9057,6 +9261,15 @@ export namespace Prisma {
     position?: SortOrder
     isPreview?: SortOrder
     duration?: SortOrderInput | SortOrder
+    uploadStatus?: SortOrderInput | SortOrder
+    processingJobId?: SortOrderInput | SortOrder
+    processingProgress?: SortOrderInput | SortOrder
+    processingError?: SortOrderInput | SortOrder
+    rawVideoUrl?: SortOrderInput | SortOrder
+    videoQualities?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    uploadedAt?: SortOrderInput | SortOrder
+    processedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     moduleId?: SortOrder
@@ -9076,6 +9289,15 @@ export namespace Prisma {
     position?: IntFilter<"Lesson"> | number
     isPreview?: BoolFilter<"Lesson"> | boolean
     duration?: IntNullableFilter<"Lesson"> | number | null
+    uploadStatus?: StringNullableFilter<"Lesson"> | string | null
+    processingJobId?: StringNullableFilter<"Lesson"> | string | null
+    processingProgress?: IntNullableFilter<"Lesson"> | number | null
+    processingError?: StringNullableFilter<"Lesson"> | string | null
+    rawVideoUrl?: StringNullableFilter<"Lesson"> | string | null
+    videoQualities?: JsonNullableFilter<"Lesson">
+    thumbnailUrl?: StringNullableFilter<"Lesson"> | string | null
+    uploadedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
+    processedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
     createdAt?: DateTimeFilter<"Lesson"> | Date | string
     updatedAt?: DateTimeFilter<"Lesson"> | Date | string
     moduleId?: StringFilter<"Lesson"> | string
@@ -9092,6 +9314,15 @@ export namespace Prisma {
     position?: SortOrder
     isPreview?: SortOrder
     duration?: SortOrderInput | SortOrder
+    uploadStatus?: SortOrderInput | SortOrder
+    processingJobId?: SortOrderInput | SortOrder
+    processingProgress?: SortOrderInput | SortOrder
+    processingError?: SortOrderInput | SortOrder
+    rawVideoUrl?: SortOrderInput | SortOrder
+    videoQualities?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    uploadedAt?: SortOrderInput | SortOrder
+    processedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     moduleId?: SortOrder
@@ -9114,6 +9345,15 @@ export namespace Prisma {
     position?: IntWithAggregatesFilter<"Lesson"> | number
     isPreview?: BoolWithAggregatesFilter<"Lesson"> | boolean
     duration?: IntNullableWithAggregatesFilter<"Lesson"> | number | null
+    uploadStatus?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    processingJobId?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    processingProgress?: IntNullableWithAggregatesFilter<"Lesson"> | number | null
+    processingError?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    rawVideoUrl?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    videoQualities?: JsonNullableWithAggregatesFilter<"Lesson">
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"Lesson"> | string | null
+    uploadedAt?: DateTimeNullableWithAggregatesFilter<"Lesson"> | Date | string | null
+    processedAt?: DateTimeNullableWithAggregatesFilter<"Lesson"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Lesson"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Lesson"> | Date | string
     moduleId?: StringWithAggregatesFilter<"Lesson"> | string
@@ -9353,6 +9593,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -9371,6 +9613,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -9389,6 +9633,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9407,6 +9653,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9425,6 +9673,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -9441,6 +9691,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9456,6 +9708,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9546,6 +9800,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     module: ModuleCreateNestedOneWithoutLessonsInput
@@ -9561,6 +9824,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     moduleId: string
@@ -9576,6 +9848,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     module?: ModuleUpdateOneRequiredWithoutLessonsNestedInput
@@ -9591,6 +9872,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     moduleId?: StringFieldUpdateOperationsInput | string
@@ -9606,6 +9896,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     moduleId: string
@@ -9620,6 +9919,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9633,6 +9941,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     moduleId?: StringFieldUpdateOperationsInput | string
@@ -9987,6 +10304,8 @@ export namespace Prisma {
     price?: SortOrder
     published?: SortOrder
     featuredImage?: SortOrder
+    featuredImageUploadStatus?: SortOrder
+    featuredImageUrl?: SortOrder
     categories?: SortOrder
     language?: SortOrder
     primaryCountry?: SortOrder
@@ -10007,6 +10326,8 @@ export namespace Prisma {
     price?: SortOrder
     published?: SortOrder
     featuredImage?: SortOrder
+    featuredImageUploadStatus?: SortOrder
+    featuredImageUrl?: SortOrder
     categories?: SortOrder
     language?: SortOrder
     primaryCountry?: SortOrder
@@ -10023,6 +10344,8 @@ export namespace Prisma {
     price?: SortOrder
     published?: SortOrder
     featuredImage?: SortOrder
+    featuredImageUploadStatus?: SortOrder
+    featuredImageUrl?: SortOrder
     categories?: SortOrder
     language?: SortOrder
     primaryCountry?: SortOrder
@@ -10156,6 +10479,40 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
 
   export type ModuleScalarRelationFilter = {
     is?: ModuleWhereInput
@@ -10181,6 +10538,15 @@ export namespace Prisma {
     position?: SortOrder
     isPreview?: SortOrder
     duration?: SortOrder
+    uploadStatus?: SortOrder
+    processingJobId?: SortOrder
+    processingProgress?: SortOrder
+    processingError?: SortOrder
+    rawVideoUrl?: SortOrder
+    videoQualities?: SortOrder
+    thumbnailUrl?: SortOrder
+    uploadedAt?: SortOrder
+    processedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     moduleId?: SortOrder
@@ -10189,6 +10555,7 @@ export namespace Prisma {
   export type LessonAvgOrderByAggregateInput = {
     position?: SortOrder
     duration?: SortOrder
+    processingProgress?: SortOrder
   }
 
   export type LessonMaxOrderByAggregateInput = {
@@ -10200,6 +10567,14 @@ export namespace Prisma {
     position?: SortOrder
     isPreview?: SortOrder
     duration?: SortOrder
+    uploadStatus?: SortOrder
+    processingJobId?: SortOrder
+    processingProgress?: SortOrder
+    processingError?: SortOrder
+    rawVideoUrl?: SortOrder
+    thumbnailUrl?: SortOrder
+    uploadedAt?: SortOrder
+    processedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     moduleId?: SortOrder
@@ -10214,6 +10589,14 @@ export namespace Prisma {
     position?: SortOrder
     isPreview?: SortOrder
     duration?: SortOrder
+    uploadStatus?: SortOrder
+    processingJobId?: SortOrder
+    processingProgress?: SortOrder
+    processingError?: SortOrder
+    rawVideoUrl?: SortOrder
+    thumbnailUrl?: SortOrder
+    uploadedAt?: SortOrder
+    processedAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     moduleId?: SortOrder
@@ -10222,6 +10605,7 @@ export namespace Prisma {
   export type LessonSumOrderByAggregateInput = {
     position?: SortOrder
     duration?: SortOrder
+    processingProgress?: SortOrder
   }
 
   export type EnumContentTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10248,6 +10632,46 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
@@ -10313,17 +10737,6 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type LessonScalarRelationFilter = {
     is?: LessonWhereInput
     isNot?: LessonWhereInput
@@ -10367,20 +10780,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     purchaseId?: SortOrder
     lessonId?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type ProductCreateNestedManyWithoutCreatorInput = {
@@ -10689,6 +11088,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type ModuleUpdateOneRequiredWithoutLessonsNestedInput = {
     create?: XOR<ModuleCreateWithoutLessonsInput, ModuleUncheckedCreateWithoutLessonsInput>
     connectOrCreate?: ModuleCreateOrConnectWithoutLessonsInput
@@ -10809,10 +11212,6 @@ export namespace Prisma {
     create?: XOR<PurchaseCreateWithoutProgressInput, PurchaseUncheckedCreateWithoutProgressInput>
     connectOrCreate?: PurchaseCreateOrConnectWithoutProgressInput
     connect?: PurchaseWhereUniqueInput
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type LessonUpdateOneRequiredWithoutProgressNestedInput = {
@@ -11031,6 +11430,17 @@ export namespace Prisma {
     not?: NestedEnumContentTypeFilter<$PrismaModel> | $Enums.ContentType
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedEnumContentTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.ContentType | EnumContentTypeFieldRefInput<$PrismaModel>
     in?: $Enums.ContentType[] | ListEnumContentTypeFieldRefInput<$PrismaModel>
@@ -11067,6 +11477,43 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
 
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
@@ -11085,31 +11532,6 @@ export namespace Prisma {
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
   export type ProductCreateWithoutCreatorInput = {
     id?: string
     title: string
@@ -11118,6 +11540,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11135,6 +11559,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11213,6 +11639,8 @@ export namespace Prisma {
     price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     published?: BoolFilter<"Product"> | boolean
     featuredImage?: StringNullableFilter<"Product"> | string | null
+    featuredImageUploadStatus?: StringNullableFilter<"Product"> | string | null
+    featuredImageUrl?: StringNullableFilter<"Product"> | string | null
     categories?: StringNullableFilter<"Product"> | string | null
     language?: StringNullableFilter<"Product"> | string | null
     primaryCountry?: StringNullableFilter<"Product"> | string | null
@@ -11427,6 +11855,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     progress?: ProgressCreateNestedManyWithoutLessonInput
@@ -11441,6 +11878,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     progress?: ProgressUncheckedCreateNestedManyWithoutLessonInput
@@ -11464,6 +11910,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11481,6 +11929,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11523,6 +11973,15 @@ export namespace Prisma {
     position?: IntFilter<"Lesson"> | number
     isPreview?: BoolFilter<"Lesson"> | boolean
     duration?: IntNullableFilter<"Lesson"> | number | null
+    uploadStatus?: StringNullableFilter<"Lesson"> | string | null
+    processingJobId?: StringNullableFilter<"Lesson"> | string | null
+    processingProgress?: IntNullableFilter<"Lesson"> | number | null
+    processingError?: StringNullableFilter<"Lesson"> | string | null
+    rawVideoUrl?: StringNullableFilter<"Lesson"> | string | null
+    videoQualities?: JsonNullableFilter<"Lesson">
+    thumbnailUrl?: StringNullableFilter<"Lesson"> | string | null
+    uploadedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
+    processedAt?: DateTimeNullableFilter<"Lesson"> | Date | string | null
     createdAt?: DateTimeFilter<"Lesson"> | Date | string
     updatedAt?: DateTimeFilter<"Lesson"> | Date | string
     moduleId?: StringFilter<"Lesson"> | string
@@ -11547,6 +12006,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11564,6 +12025,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11722,6 +12185,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11739,6 +12204,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -11815,6 +12282,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11832,6 +12301,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11883,6 +12354,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     module: ModuleCreateNestedOneWithoutLessonsInput
@@ -11897,6 +12377,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     moduleId: string
@@ -11954,6 +12443,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     module?: ModuleUpdateOneRequiredWithoutLessonsNestedInput
@@ -11968,6 +12466,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     moduleId?: StringFieldUpdateOperationsInput | string
@@ -12014,6 +12521,8 @@ export namespace Prisma {
     price: Decimal | DecimalJsLike | number | string
     published?: boolean
     featuredImage?: string | null
+    featuredImageUploadStatus?: string | null
+    featuredImageUrl?: string | null
     categories?: string | null
     language?: string | null
     primaryCountry?: string | null
@@ -12039,6 +12548,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12056,6 +12567,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12073,6 +12586,8 @@ export namespace Prisma {
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     published?: BoolFieldUpdateOperationsInput | boolean
     featuredImage?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    featuredImageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     categories?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     primaryCountry?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12201,6 +12716,15 @@ export namespace Prisma {
     position: number
     isPreview?: boolean
     duration?: number | null
+    uploadStatus?: string | null
+    processingJobId?: string | null
+    processingProgress?: number | null
+    processingError?: string | null
+    rawVideoUrl?: string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: string | null
+    uploadedAt?: Date | string | null
+    processedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12214,6 +12738,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     progress?: ProgressUpdateManyWithoutLessonNestedInput
@@ -12228,6 +12761,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     progress?: ProgressUncheckedUpdateManyWithoutLessonNestedInput
@@ -12242,6 +12784,15 @@ export namespace Prisma {
     position?: IntFieldUpdateOperationsInput | number
     isPreview?: BoolFieldUpdateOperationsInput | boolean
     duration?: NullableIntFieldUpdateOperationsInput | number | null
+    uploadStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    processingJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    processingProgress?: NullableIntFieldUpdateOperationsInput | number | null
+    processingError?: NullableStringFieldUpdateOperationsInput | string | null
+    rawVideoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    videoQualities?: NullableJsonNullValueInput | InputJsonValue
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    processedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

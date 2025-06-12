@@ -1,3 +1,5 @@
+// prisma/schema.prisma - SAFE UPDATE (matches your existing database)
+
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -23,22 +25,25 @@ model User {
 }
 
 model Product {
-  id             String     @id @default(cuid())
-  title          String
-  slug           String     @unique
-  description    String
-  price          Decimal    @db.Decimal(10, 2)
-  published      Boolean    @default(false)
-  featuredImage  String?
-  categories     String?
-  language       String?
-  primaryCountry String?
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-  creatorId      String
-  modules        Module[]
-  creator        User       @relation(fields: [creatorId], references: [id])
-  purchases      Purchase[]
+  id                        String     @id @default(cuid())
+  title                     String
+  slug                      String     @unique
+  description               String
+  price                     Decimal    @db.Decimal(10, 2)
+  published                 Boolean    @default(false)
+  featuredImage             String?
+  // Keep the column you already created with SQL
+  featuredImageUploadStatus String?    @default("completed")
+  featuredImageUrl          String?
+  categories                String?
+  language                  String?
+  primaryCountry            String?
+  createdAt                 DateTime   @default(now())
+  updatedAt                 DateTime   @updatedAt
+  creatorId                 String
+  modules                   Module[]
+  creator                   User       @relation(fields: [creatorId], references: [id])
+  purchases                 Purchase[]
 
   @@index([creatorId])
   @@index([slug])
@@ -69,14 +74,28 @@ model Lesson {
   position    Int
   isPreview   Boolean     @default(false)
   duration    Int?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  moduleId    String
-  module      Module      @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  progress    Progress[]
+
+  // Video processing fields (these should match what you created with SQL)
+  uploadStatus       String?   @default("pending")
+  processingJobId    String?
+  processingProgress Int?      @default(0)
+  processingError    String?
+  rawVideoUrl        String?
+  videoQualities     Json?
+  thumbnailUrl       String?
+  uploadedAt         DateTime?
+  processedAt        DateTime?
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  moduleId  String
+  module    Module     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress  Progress[]
 
   @@index([moduleId])
   @@index([position])
+  @@index([uploadStatus])
+  @@index([processingJobId])
 }
 
 model Purchase {
