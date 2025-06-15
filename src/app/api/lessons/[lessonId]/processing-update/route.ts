@@ -19,27 +19,22 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await request.json();
+    const { status, progress, error } = await request.json();
     
-    console.log(`Completing lesson ${params.lessonId} processing:`, data);
+    console.log(`Updating lesson ${params.lessonId}: ${status} (${progress}%)`);
     
     await prisma.lesson.update({
       where: { id: params.lessonId },
       data: {
-        uploadStatus: 'completed',
-        processingProgress: 100,
-        processedAt: new Date(),
-        duration: data.duration,
-        videoQualities: data.videoQualities,
-        thumbnailUrl: data.thumbnailUrl,
-        contentUrl: data.contentUrl,
-        processingError: null,
+        uploadStatus: status,
+        processingProgress: progress,
+        ...(error && { processingError: error }),
       },
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Processing completion error:', error);
-    return NextResponse.json({ error: 'Completion failed' }, { status: 500 });
+    console.error('Processing update error:', error);
+    return NextResponse.json({ error: 'Update failed' }, { status: 500 });
   }
 }

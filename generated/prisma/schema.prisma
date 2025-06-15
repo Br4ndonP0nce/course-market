@@ -1,5 +1,3 @@
-// prisma/schema.prisma - SAFE UPDATE (matches your existing database)
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -32,15 +30,14 @@ model Product {
   price                     Decimal    @db.Decimal(10, 2)
   published                 Boolean    @default(false)
   featuredImage             String?
-  // Keep the column you already created with SQL
-  featuredImageUploadStatus String?    @default("completed")
-  featuredImageUrl          String?
   categories                String?
   language                  String?
   primaryCountry            String?
   createdAt                 DateTime   @default(now())
   updatedAt                 DateTime   @updatedAt
   creatorId                 String
+  featuredImageUploadStatus String?    @default("completed")
+  featuredImageUrl          String?
   modules                   Module[]
   creator                   User       @relation(fields: [creatorId], references: [id])
   purchases                 Purchase[]
@@ -66,31 +63,28 @@ model Module {
 }
 
 model Lesson {
-  id          String      @id @default(cuid())
-  title       String
-  description String?
-  contentType ContentType
-  contentUrl  String?
-  position    Int
-  isPreview   Boolean     @default(false)
-  duration    Int?
-
-  // Video processing fields (these should match what you created with SQL)
-  uploadStatus       String?   @default("pending")
-  processingJobId    String?
-  processingProgress Int?      @default(0)
-  processingError    String?
-  rawVideoUrl        String?
-  videoQualities     Json?
-  thumbnailUrl       String?
-  uploadedAt         DateTime?
+  id                 String      @id @default(cuid())
+  title              String
+  description        String?
+  contentType        ContentType
+  contentUrl         String?
+  position           Int
+  isPreview          Boolean     @default(false)
+  duration           Int?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  moduleId           String
   processedAt        DateTime?
-
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  moduleId  String
-  module    Module     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
-  progress  Progress[]
+  processingError    String?
+  processingJobId    String?
+  processingProgress Int?        @default(0)
+  rawVideoUrl        String?
+  thumbnailUrl       String?
+  uploadStatus       String?     @default("pending")
+  uploadedAt         DateTime?
+  videoQualities     Json?
+  module             Module      @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  progress           Progress[]
 
   @@index([moduleId])
   @@index([position])

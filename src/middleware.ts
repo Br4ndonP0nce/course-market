@@ -19,6 +19,9 @@ const isPublicRoute = createRouteMatcher([
   '/contact',
   '/blog',
   '/become-creator',
+  '/api/lessons/(.*)/processing-update',
+  '/api/lessons/(.*)/processing-complete',
+  '/api/lessons/(.*)/task-id',
 ]);
 
 // Define routes for different roles

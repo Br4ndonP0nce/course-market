@@ -5,7 +5,7 @@ import { useState } from "react";
 import { UppyVideoUploader } from "@/components/uploads/UppyVideoUploader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
+console.log("UppyVideoUploader component:", UppyVideoUploader);
 export default function TestUploadPage() {
   const [testLessonId, setTestLessonId] = useState<string>("");
   const [uploadResults, setUploadResults] = useState<any>(null);
@@ -72,12 +72,35 @@ export default function TestUploadPage() {
                 Test Lesson ID: <code>{testLessonId}</code>
               </p>
 
-              <UppyVideoUploader
-                lessonId={testLessonId}
-                onUploadComplete={handleUploadComplete}
-                onUploadError={handleUploadError}
-                maxSizeGB={2} // Limit to 2GB for testing
-              />
+              {/* ADD DEBUG INFO */}
+              <div className="bg-yellow-50 p-2 mb-4 text-sm">
+                Debug: About to render UppyVideoUploader with lessonId:{" "}
+                {testLessonId}
+              </div>
+
+              <div className="border-2 border-dashed border-red-300 p-4">
+                <p className="text-red-600 mb-2">
+                  Uploader should appear below:
+                </p>
+                <UppyVideoUploader
+                  lessonId={testLessonId}
+                  onUploadComplete={handleUploadComplete}
+                  onUploadError={handleUploadError}
+                  maxSizeGB={2}
+                />
+                <div className="border-2 border-red-500 p-4 bg-red-50">
+                  <h4 className="text-red-800 font-bold">
+                    Debug: Uppy Container
+                  </h4>
+                  <p className="text-red-600">
+                    This red box should contain the Uppy interface above
+                  </p>
+                  <p className="text-sm">
+                    If you can't see the upload interface but this red box is
+                    visible, it's a CSS issue.
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 

@@ -298,8 +298,96 @@ export function UppyVideoUploader({
     }
   };
 
+  const uppyStyles = `
+  /* Main Dashboard container */
+  .uppy-Dashboard {
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    background: white !important;
+    min-height: 400px !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+  
+  /* Inner dashboard area */
+  .uppy-Dashboard-inner {
+    background: white !important;
+    min-height: 400px !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Drop area */
+  .uppy-Dashboard-dropFilesHereHint {
+    color: #374151 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Add files area - ENABLE INTERACTIONS */
+  .uppy-Dashboard-AddFiles {
+    background: #f9fafb !important;
+    border: 2px dashed #d1d5db !important;
+    border-radius: 8px !important;
+    padding: 40px !important;
+    text-align: center !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+  
+  /* Add files title */
+  .uppy-Dashboard-AddFiles-title {
+    color: #374151 !important;
+    font-size: 16px !important;
+    margin-bottom: 16px !important;
+    pointer-events: none !important;
+  }
+  
+  /* Browse button - CRITICAL FOR CLICKS */
+  .uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse {
+    background: #3b82f6 !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+  
+  /* Hover effects */
+  .uppy-u-reset.uppy-c-btn.uppy-Dashboard-browse:hover {
+    background: #2563eb !important;
+  }
+  
+  /* Make sure everything is visible AND clickable */
+  .uppy-Dashboard * {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Enable file input */
+  .uppy-Dashboard input[type="file"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+  
+  /* Drop zone interactions */
+  .uppy-Dashboard-dropFilesHereHint {
+    pointer-events: none !important;
+  }
+  
+  /* Overall container interactions */
+  .uppy-Dashboard-AddFiles-list,
+  .uppy-Dashboard-AddFiles-info {
+    pointer-events: auto !important;
+  }
+`;
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 ">
+      <style dangerouslySetInnerHTML={{ __html: uppyStyles }} />
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         <Dashboard
           uppy={uppy}
@@ -324,6 +412,15 @@ export function UppyVideoUploader({
             },
           ]}
         />
+        <button
+          onClick={() => {
+            console.log("Current files:", uppy.getFiles());
+            console.log("Uppy state:", uppy.getState());
+          }}
+          className="bg-red-500 text-white p-2 rounded"
+        >
+          Debug: Show Uppy Files
+        </button>
       </div>
 
       {/* Status Display */}

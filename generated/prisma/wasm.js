@@ -138,14 +138,14 @@ exports.Prisma.ProductScalarFieldEnum = {
   price: 'price',
   published: 'published',
   featuredImage: 'featuredImage',
-  featuredImageUploadStatus: 'featuredImageUploadStatus',
-  featuredImageUrl: 'featuredImageUrl',
   categories: 'categories',
   language: 'language',
   primaryCountry: 'primaryCountry',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  creatorId: 'creatorId'
+  creatorId: 'creatorId',
+  featuredImageUploadStatus: 'featuredImageUploadStatus',
+  featuredImageUrl: 'featuredImageUrl'
 };
 
 exports.Prisma.ModuleScalarFieldEnum = {
@@ -167,18 +167,18 @@ exports.Prisma.LessonScalarFieldEnum = {
   position: 'position',
   isPreview: 'isPreview',
   duration: 'duration',
-  uploadStatus: 'uploadStatus',
-  processingJobId: 'processingJobId',
-  processingProgress: 'processingProgress',
-  processingError: 'processingError',
-  rawVideoUrl: 'rawVideoUrl',
-  videoQualities: 'videoQualities',
-  thumbnailUrl: 'thumbnailUrl',
-  uploadedAt: 'uploadedAt',
-  processedAt: 'processedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  moduleId: 'moduleId'
+  moduleId: 'moduleId',
+  processedAt: 'processedAt',
+  processingError: 'processingError',
+  processingJobId: 'processingJobId',
+  processingProgress: 'processingProgress',
+  rawVideoUrl: 'rawVideoUrl',
+  thumbnailUrl: 'thumbnailUrl',
+  uploadStatus: 'uploadStatus',
+  uploadedAt: 'uploadedAt',
+  videoQualities: 'videoQualities'
 };
 
 exports.Prisma.PurchaseScalarFieldEnum = {
