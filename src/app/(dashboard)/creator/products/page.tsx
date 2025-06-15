@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { DashboardHeader } from "./new/page";
+import { DashboardHeader } from "@/components/dashboard/dashboardHeader";
 import { ProductsTable } from "@/components/dashboard/productsTable";
 import { ProductsFilter } from "@/components/dashboard/productsFilter";
 
