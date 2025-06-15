@@ -1,4 +1,3 @@
-import { CreateProductForm } from "@/components/forms/createProductForm";
 import { DashboardHeader } from "@/components/dashboard/dashboardHeader";
 import ProductCreationFlow from "@/components/dashboard/productCreationFlow";
 export default function NewProductPage() {
